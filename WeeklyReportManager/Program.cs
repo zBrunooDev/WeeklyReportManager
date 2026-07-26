@@ -20,7 +20,7 @@ namespace WeeklyReportManager
         static void Menu()
         {
             Console.WriteLine("=== Relatório de atidade díario ===");
-            Console.WriteLine("Cadastre suas atividade com as informações abaixo: ");
+            Console.WriteLine("Cadastre suas atividade com as informações: Nome, quantidade, observação");
 
             Console.WriteLine("Caso queira encerrar digite o nome do da atividade 'Fim do Expediente'");
         }
