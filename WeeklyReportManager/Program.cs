@@ -9,15 +9,11 @@ namespace WeeklyReportManager
 {
     internal class Program
     {
-
+        static List<ActivityReport> reports = new List<ActivityReport>();
         static int contId = 1;
         static void Main(string[] args)
         {
-            
-            List<ActivityReport> reports = new List<ActivityReport>();
-
             Menu();
-
         }
 
         static void Menu()
@@ -42,7 +38,7 @@ namespace WeeklyReportManager
                 Console.Write("Observação: ");
                 string observation = Console.ReadLine();
 
-                CreateReport(nameTask, quantity, observation);
+                ActivityReport report = CreateReport(nameTask, quantity, observation);
 
             }
         }
@@ -60,6 +56,11 @@ namespace WeeklyReportManager
                 Id = contId,
                 Date = DateTime.Now
             };
+        }
+
+        static void AddActivityReport(ActivityReport report)
+        {
+            reports.Add(report);
         }
     }
 }
