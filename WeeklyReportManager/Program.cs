@@ -19,18 +19,33 @@ namespace WeeklyReportManager
 
         static void Menu()
         {
-            Console.WriteLine("=== Relatório de atidade díario ===");
-            Console.WriteLine("Cadastre suas atividade com as informações: Nome, quantidade, observação");
+            Console.WriteLine("=== Relatório de atidade díario ===\n");
+            Console.WriteLine("Cadastre suas atividade com as informações: Nome, quantidade, observação\n");
 
-            Console.WriteLine("Caso queira encerrar digite o nome do da atividade 'Fim do Expediente'");
+            Console.WriteLine("Caso queira encerrar digite o nome do da atividade 'Fim do expediente'\n");
+
+            while (true)
+            {
+
+                
+                Console.Write("Nome da tarefa: ");
+                string nameTask = Console.ReadLine();
+
+                if (nameTask == "Fim do expediente")
+                    break;
+
+                Console.Write("Quantidade: ");
+                string quantity = Console.ReadLine();
+                Console.Write("Observação: ");
+                string observation = Console.ReadLine();
+
+                
+            }
         }
 
         static void ActivityLog(string name, int quantity, string observation)
         {
-            while (true)
-            {
-                
-            }
+ 
         }
     }
 }
