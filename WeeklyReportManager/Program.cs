@@ -9,8 +9,12 @@ namespace WeeklyReportManager
 {
     internal class Program
     {
+
+        static ActivityReport report;
+        static int contId = 1;
         static void Main(string[] args)
         {
+            
             List<ActivityReport> reports = new List<ActivityReport>();
 
             Menu();
@@ -22,7 +26,7 @@ namespace WeeklyReportManager
             Console.WriteLine("=== Relatório de atidade díario ===\n");
             Console.WriteLine("Cadastre suas atividade com as informações: Nome, quantidade, observação\n");
 
-            Console.WriteLine("Caso queira encerrar digite o nome do da atividade 'Fim do expediente'\n");
+            Console.WriteLine("Caso queira encerrar digite o nome do da atividade 'FIM DO EXPEDIENTE'\n");
 
             while (true)
             {
@@ -31,21 +35,38 @@ namespace WeeklyReportManager
                 Console.Write("Nome da tarefa: ");
                 string nameTask = Console.ReadLine();
 
-                if (nameTask == "Fim do expediente")
+                if (nameTask == "FIM DO EXPEDIENTE")
+
                     break;
 
                 Console.Write("Quantidade: ");
-                string quantity = Console.ReadLine();
+                int quantity = int.Parse(Console.ReadLine());
                 Console.Write("Observação: ");
                 string observation = Console.ReadLine();
 
-                
+                ActivityLog(nameTask, quantity, observation);
+
+                Console.WriteLine(report.TaskName);
+                Console.WriteLine(report.Quantity);
+                Console.WriteLine(report.Observation);
+                Console.WriteLine(report.Id);
+                Console.WriteLine(report.Date);
             }
         }
 
+        // Creating an activity log object
         static void ActivityLog(string name, int quantity, string observation)
         {
- 
+            contId++;
+
+            report = new ActivityReport()
+            {
+                TaskName = name,
+                Quantity = quantity,
+                Observation = observation,
+                Id = contId,
+                Date = DateTime.Now
+            };
         }
     }
 }
