@@ -10,7 +10,6 @@ namespace WeeklyReportManager
     internal class Program
     {
 
-        static ActivityReport report;
         static int contId = 1;
         static void Main(string[] args)
         {
@@ -31,7 +30,6 @@ namespace WeeklyReportManager
             while (true)
             {
 
-                
                 Console.Write("Nome da tarefa: ");
                 string nameTask = Console.ReadLine();
 
@@ -44,22 +42,17 @@ namespace WeeklyReportManager
                 Console.Write("Observação: ");
                 string observation = Console.ReadLine();
 
-                ActivityLog(nameTask, quantity, observation);
+                CreateReport(nameTask, quantity, observation);
 
-                Console.WriteLine(report.TaskName);
-                Console.WriteLine(report.Quantity);
-                Console.WriteLine(report.Observation);
-                Console.WriteLine(report.Id);
-                Console.WriteLine(report.Date);
             }
         }
 
         // Creating an activity log object
-        static void ActivityLog(string name, int quantity, string observation)
+        static ActivityReport CreateReport(string name, int quantity, string observation)
         {
             contId++;
 
-            report = new ActivityReport()
+            return new ActivityReport()
             {
                 TaskName = name,
                 Quantity = quantity,
