@@ -69,8 +69,11 @@ namespace WeeklyReportManager
             reports.Add(report);
         }
         //list report V1
+
+        
         static void ListAtivityReports()
         {
+            
             if (reports.Count == 0)
             {
                 Console.WriteLine("Não há tarefas para listar.");
@@ -86,9 +89,10 @@ namespace WeeklyReportManager
                     Console.WriteLine($"Observação: {report.Observation}");
                     Console.WriteLine();
                 }
-            }
-
+            }  
         }
+
+        
 
         //Search by Id
         static ActivityReport FindById(int id)
@@ -103,7 +107,17 @@ namespace WeeklyReportManager
             return null;
         }
         
+        //Delet records
+        static void DeleteActivityReport(int id)
+        {
 
+            ActivityReport report = FindById(id);
+            if (report !=  null)
+            {
+                reports.Remove(FindById(id));
+            }
+
+        }
 
     }
 }
