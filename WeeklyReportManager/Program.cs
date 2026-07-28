@@ -90,5 +90,20 @@ namespace WeeklyReportManager
 
         }
 
+        //Search by Id
+        static ActivityReport FindById(int id)
+        {
+            foreach(ActivityReport report in reports)
+            {
+                if (report.Id == id)
+                {
+                    return report;
+                }
+            }
+            return null;
+        }
+        
+
+
     }
 }
