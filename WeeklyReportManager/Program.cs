@@ -70,7 +70,7 @@ namespace WeeklyReportManager
         }
         //list report V1
 
-        
+        /*
         static void ListAtivityReports()
         {
             
@@ -91,8 +91,12 @@ namespace WeeklyReportManager
                 }
             }  
         }
+        */
+        static List<ActivityReport> ListAtivityReports()
+        {
+            return reports;
+        }
 
-        
 
         //Search by Id
         static ActivityReport FindById(int id)
