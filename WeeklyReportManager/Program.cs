@@ -10,7 +10,7 @@ namespace WeeklyReportManager
     internal class Program
     {
         static List<ActivityReport> reports = new List<ActivityReport>();
-        static int contId = 1;
+        static int contId = 0;
         static void Main(string[] args)
         {
             Menu();
@@ -30,8 +30,12 @@ namespace WeeklyReportManager
                 string nameTask = Console.ReadLine();
 
                 if (nameTask == "FIM DO EXPEDIENTE")
-
+                {
+                    ListAtivityReports();
                     break;
+                }
+                   
+               
 
                 Console.Write("Quantidade: ");
                 int quantity = int.Parse(Console.ReadLine());
@@ -39,6 +43,7 @@ namespace WeeklyReportManager
                 string observation = Console.ReadLine();
 
                 ActivityReport report = CreateReport(nameTask, quantity, observation);
+                reports.Add(report);
 
             }
         }
@@ -58,9 +63,32 @@ namespace WeeklyReportManager
             };
         }
 
+        // Add the report to the list.
         static void AddActivityReport(ActivityReport report)
         {
             reports.Add(report);
         }
+        //list report V1
+        static void ListAtivityReports()
+        {
+            if (reports.Count == 0)
+            {
+                Console.WriteLine("Não há tarefas para listar.");
+            }
+            else
+            {
+                foreach (ActivityReport report in reports)
+                {
+                    Console.WriteLine($"Id: {report.Id}");
+                    Console.WriteLine($"Data: {report.Date}");
+                    Console.WriteLine($"Tarefa: {report.TaskName}");
+                    Console.WriteLine($"Quantidade: {report.Quantity}");
+                    Console.WriteLine($"Observação: {report.Observation}");
+                    Console.WriteLine();
+                }
+            }
+
+        }
+
     }
 }
