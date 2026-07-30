@@ -69,29 +69,6 @@ namespace WeeklyReportManager
             reports.Add(report);
         }
         //list report V1
-
-        /*
-        static void ListAtivityReports()
-        {
-            
-            if (reports.Count == 0)
-            {
-                Console.WriteLine("Não há tarefas para listar.");
-            }
-            else
-            {
-                foreach (ActivityReport report in reports)
-                {
-                    Console.WriteLine($"Id: {report.Id}");
-                    Console.WriteLine($"Data: {report.Date}");
-                    Console.WriteLine($"Tarefa: {report.TaskName}");
-                    Console.WriteLine($"Quantidade: {report.Quantity}");
-                    Console.WriteLine($"Observação: {report.Observation}");
-                    Console.WriteLine();
-                }
-            }  
-        }
-        */
         static List<ActivityReport> ListAtivityReports()
         {
             return reports;
