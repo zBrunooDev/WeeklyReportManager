@@ -33,7 +33,7 @@ namespace WeeklyReportManager
         }
 
         //list report
-        public List<ActivityReport> ListAtivityReports()
+        public List<ActivityReport> GetAllReports()
         {
             return reports;
         }

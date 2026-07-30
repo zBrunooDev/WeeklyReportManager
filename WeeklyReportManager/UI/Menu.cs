@@ -9,7 +9,7 @@ namespace WeeklyReportManager
     internal class Menu
     {
         ActivityReportService activityReportService = new ActivityReportService();
-        
+        List<ActivityReport> reports;
 
         public void Run()
         {
@@ -26,11 +26,9 @@ namespace WeeklyReportManager
 
                 if (nameTask == "FIM DO EXPEDIENTE")
                 {
-                    activityReportService.ListAtivityReports();
+                    activityReportService.GetAllReports();
                     break;
                 }
-
-
 
                 Console.Write("Quantidade: ");
                 int quantity = int.Parse(Console.ReadLine());
@@ -38,7 +36,7 @@ namespace WeeklyReportManager
                 string observation = Console.ReadLine();
 
                 ActivityReport report = activityReportService.CreateReport(nameTask, quantity, observation);
-                reports.Add(report);
+                activityReportService.AddActivityReport(report);
 
             }
         }
