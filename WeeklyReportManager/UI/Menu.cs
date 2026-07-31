@@ -32,7 +32,17 @@ namespace WeeklyReportManager
         //Draw the Menu
         static void DrawMenu()
         {
-
+            Console.WriteLine("Registro diário de atividades administrativas");
+            Console.WriteLine();
+            Console.WriteLine("============================================");
+            Console.WriteLine("[1] Nova Atividade");
+            Console.WriteLine("[2] Listar por atividade");
+            Console.WriteLine("[3] Buscar por ID");
+            Console.WriteLine("[4] Editar atividade");
+            Console.WriteLine("[5] Excluir atividade");
+            Console.WriteLine("[0] Sair");
+            Console.WriteLine("============================================");
+            Console.Write("Escolha uma opção: ");
         }
         //Execute the corresponding action.
         static void ReadOption()
