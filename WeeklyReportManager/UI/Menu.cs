@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,36 +10,28 @@ namespace WeeklyReportManager
     internal class Menu
     {
         ActivityReportService activityReportService = new ActivityReportService();
-        List<ActivityReport> reports;
 
-        public void Run()
+        // initializes and controls the application flow
+        public void Start()
         {
-            Console.WriteLine("=== Relatório de atidade díario ===\n");
-            Console.WriteLine("Cadastre suas atividade com as informações: Nome, quantidade, observação\n");
+            DrawHeader();
+            DrawMenu();
+            ReadOption();
+        }
+        // Draw the header
+        static void DrawHeader()
+        {
 
-            Console.WriteLine("Caso queira encerrar digite o nome do da atividade 'FIM DO EXPEDIENTE'\n");
+        }
+        //Draw the Menu
+        static void DrawMenu()
+        {
 
-            while (true)
-            {
+        }
+        //Execute the corresponding action.
+        static void ReadOption()
+        {
 
-                Console.Write("Nome da tarefa: ");
-                string nameTask = Console.ReadLine();
-
-                if (nameTask == "FIM DO EXPEDIENTE")
-                {
-                    activityReportService.GetAllReports();
-                    break;
-                }
-
-                Console.Write("Quantidade: ");
-                int quantity = int.Parse(Console.ReadLine());
-                Console.Write("Observação: ");
-                string observation = Console.ReadLine();
-
-                ActivityReport report = activityReportService.CreateReport(nameTask, quantity, observation);
-                activityReportService.AddActivityReport(report);
-
-            }
         }
     }
 }
