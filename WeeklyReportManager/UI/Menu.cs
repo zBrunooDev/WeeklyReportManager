@@ -21,7 +21,13 @@ namespace WeeklyReportManager
         // Draw the header
         static void DrawHeader()
         {
-
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("============================================");
+            Console.WriteLine("           WEEKLY REPORT MANAGER            ");
+            Console.WriteLine("============================================");
+            Console.ResetColor();
+            Console.WriteLine();
         }
         //Draw the Menu
         static void DrawMenu()
