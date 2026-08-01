@@ -9,7 +9,7 @@ namespace WeeklyReportManager
 {
     internal class Menu
     {
-        ActivityReportService activityReportService = new ActivityReportService();
+        
 
         // initializes and controls the application flow
         public void Start()
@@ -17,6 +17,21 @@ namespace WeeklyReportManager
             DrawHeader();
             DrawMenu();
             int option = ReadOption();
+            if(option == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Opção inválida. Pressione qualquer tecla para continuar");
+                Console.ResetColor();
+                Console.ReadKey();
+
+            }
+            else
+            {
+                if(option == 1)
+                {
+                    Console.WriteLine("Testando");
+                } 
+            }
         }
         // Draw the header
         static void DrawHeader()
@@ -55,7 +70,7 @@ namespace WeeklyReportManager
 
             if(isNumber)
             {
-                return 0;
+                return option;
             }
 
             return -1;
