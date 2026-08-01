@@ -43,6 +43,7 @@ namespace WeeklyReportManager
                         Console.WriteLine("Atividade Cadastrada com sucesso!");
                         service.RegisterActivity(name, quantyti, observation);
                         Console.ResetColor();
+                        Pause();
                         break;
                     case 2:
                         break;
@@ -92,6 +93,15 @@ namespace WeeklyReportManager
 
             return -1;
 
+        }
+        //pause the program
+        static void Pause()
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write("Pressione qualquer tecla para continuar...");
+            Console.ResetColor();
+            Console.ReadKey();
         }
     }
 }
