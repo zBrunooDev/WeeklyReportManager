@@ -16,7 +16,7 @@ namespace WeeklyReportManager
         {
             DrawHeader();
             DrawMenu();
-            ReadOption();
+            int option = ReadOption();
         }
         // Draw the header
         static void DrawHeader()
@@ -45,8 +45,20 @@ namespace WeeklyReportManager
             Console.Write("Escolha uma opção: ");
         }
         //Execute the corresponding action.
-        static void ReadOption()
+        static int ReadOption()
         {
+
+            string input = Console.ReadLine();
+
+            int option;
+            bool isNumber = int.TryParse(input, out option);
+
+            if(isNumber)
+            {
+                return 0;
+            }
+
+            return -1;
 
         }
     }
