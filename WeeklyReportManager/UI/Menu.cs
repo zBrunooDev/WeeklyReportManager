@@ -41,6 +41,7 @@ namespace WeeklyReportManager
                         service.CreateReport(name, quantyti, observation);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Atividade Cadastrada com sucesso!");
+                        service.RegisterActivity(name, quantyti, observation);
                         Console.ResetColor();
                         break;
                     case 2:

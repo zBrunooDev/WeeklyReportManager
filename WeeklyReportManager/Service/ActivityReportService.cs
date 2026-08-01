@@ -25,6 +25,12 @@ namespace WeeklyReportManager
                 Date = DateTime.Now
             };
         }
+        // Method of recording information
+        public void RegisterActivity(string name, int quantity, string observation)
+        {
+            ActivityReport report = CreateReport(name, quantity, observation);
+            reports.Add(report);    
+        }
 
         // Add the report to the list.
         public void AddActivityReport(ActivityReport report)
