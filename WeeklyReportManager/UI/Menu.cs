@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace WeeklyReportManager
 {
     internal class Menu
     {
-        
+        ActivityReportService service = new ActivityReportService();
 
         // initializes and controls the application flow
         public void Start()
@@ -27,10 +28,25 @@ namespace WeeklyReportManager
             }
             else
             {
-                if(option == 1)
+
+                switch (option)
                 {
-                    Console.WriteLine("Testando");
-                } 
+                    case 1:
+                        Console.Write("Digite o nome da atividade: ");
+                        string name = Console.ReadLine();
+                        Console.Write("Quantidade: ");
+                        int quantyti = int.Parse(Console.ReadLine());
+                        Console.Write("Observação: ");
+                        string observation = Console.ReadLine();
+                        service.CreateReport(name, quantyti, observation);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Atividade Cadastrada com sucesso!");
+                        Console.ResetColor();
+                        break;
+                    case 2:
+                        break;
+                }
+
             }
         }
         // Draw the header
