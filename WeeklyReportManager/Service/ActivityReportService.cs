@@ -31,7 +31,7 @@ namespace WeeklyReportManager
             ActivityReport report = CreateReport(name, quantity, observation);
             AddActivityReport(report);   
         }
-
+        
         // Add the report to the list.
         public void AddActivityReport(ActivityReport report)
         {
@@ -43,8 +43,6 @@ namespace WeeklyReportManager
         {
             return reports;
         }
-
-
         //Search by Id
         public ActivityReport FindById(int id)
         {
@@ -57,7 +55,6 @@ namespace WeeklyReportManager
             }
             return null;
         }
-
         //Delet records
         public void DeleteActivityReport(int id)
         {

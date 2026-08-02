@@ -45,10 +45,9 @@ namespace WeeklyReportManager
                             int quantity = int.Parse(Console.ReadLine());
                             Console.Write("Observação: ");
                             string observation = Console.ReadLine();
-                            service.CreateReport(name, quantity, observation);
+                            service.RegisterActivity(name, quantity, observation);
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine("Atividade Cadastrada com sucesso!");
-                            service.RegisterActivity(name, quantity, observation);
                             Console.ResetColor();
                             Pause();
                             Start();
