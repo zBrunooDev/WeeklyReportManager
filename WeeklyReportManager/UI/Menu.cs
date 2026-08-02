@@ -15,22 +15,22 @@ namespace WeeklyReportManager
         // initializes and controls the application flow
         public void Start()
         {
-            DrawHeader();
-            DrawMenu();
-            int option = ReadOption();
-            while (true)
+            bool runnig = true;
+
+            while (runnig)
             {
-                if (option == 0)
-                {
-                    break;
-                }
+
+                DrawHeader();
+                DrawMenu();
+
+                int option = ReadOption();
                 if (option == -1)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Opção inválida. Pressione qualquer tecla para continuar");
+                    Console.WriteLine("Opção inválida.");
                     Console.ResetColor();
-                    Console.ReadKey();
-
+                    Pause();
+                    continue;
                 }
                 else
                 {
@@ -50,12 +50,13 @@ namespace WeeklyReportManager
                             Console.WriteLine("Atividade Cadastrada com sucesso!");
                             Console.ResetColor();
                             Pause();
-                            Start();
-                            break;
+                            continue;
                         case 2:
                             // Listing activities
                             ShowReports();
-                            Start();
+                            continue;
+                        case 0:
+                            runnig = false;
                             break;
                     }
 
@@ -116,7 +117,7 @@ namespace WeeklyReportManager
             Console.ReadKey();
         }
 
-        //Mostrar a listagem da atrividade
+        //Show the attractive listing
         static void ShowReports()
         {
             var reports = service.GetAllReports();
