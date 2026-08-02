@@ -29,7 +29,7 @@ namespace WeeklyReportManager
         public void RegisterActivity(string name, int quantity, string observation)
         {
             ActivityReport report = CreateReport(name, quantity, observation);
-            reports.Add(report);    
+            AddActivityReport(report);   
         }
 
         // Add the report to the list.
