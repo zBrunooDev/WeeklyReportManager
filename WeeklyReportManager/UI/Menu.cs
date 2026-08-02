@@ -10,7 +10,7 @@ namespace WeeklyReportManager
 {
     internal class Menu
     {
-        ActivityReportService service = new ActivityReportService();
+        static ActivityReportService service = new ActivityReportService();
 
         // initializes and controls the application flow
         public void Start()
@@ -18,38 +18,51 @@ namespace WeeklyReportManager
             DrawHeader();
             DrawMenu();
             int option = ReadOption();
-            if(option == -1)
+            while (true)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Opção inválida. Pressione qualquer tecla para continuar");
-                Console.ResetColor();
-                Console.ReadKey();
-
-            }
-            else
-            {
-
-                switch (option)
+                if (option == 0)
                 {
-                    case 1:
-                        Console.Write("Digite o nome da atividade: ");
-                        string name = Console.ReadLine();
-                        Console.Write("Quantidade: ");
-                        int quantyti = int.Parse(Console.ReadLine());
-                        Console.Write("Observação: ");
-                        string observation = Console.ReadLine();
-                        service.CreateReport(name, quantyti, observation);
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Atividade Cadastrada com sucesso!");
-                        service.RegisterActivity(name, quantyti, observation);
-                        Console.ResetColor();
-                        Pause();
-                        break;
-                    case 2:
-                        break;
+                    break;
                 }
+                if (option == -1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Opção inválida. Pressione qualquer tecla para continuar");
+                    Console.ResetColor();
+                    Console.ReadKey();
 
+                }
+                else
+                {
+
+                    switch (option)
+                    {
+                        case 1:
+                            //Adding activities
+                            Console.Write("Digite o nome da atividade: ");
+                            string name = Console.ReadLine();
+                            Console.Write("Quantidade: ");
+                            int quantity = int.Parse(Console.ReadLine());
+                            Console.Write("Observação: ");
+                            string observation = Console.ReadLine();
+                            service.CreateReport(name, quantity, observation);
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Atividade Cadastrada com sucesso!");
+                            service.RegisterActivity(name, quantity, observation);
+                            Console.ResetColor();
+                            Pause();
+                            Start();
+                            break;
+                        case 2:
+                            // Listing activities
+                            ShowReports();
+                            Start();
+                            break;
+                    }
+
+                }
             }
+
         }
         // Draw the header
         static void DrawHeader()
@@ -69,7 +82,7 @@ namespace WeeklyReportManager
             Console.WriteLine();
             Console.WriteLine("============================================");
             Console.WriteLine("[1] Nova Atividade");
-            Console.WriteLine("[2] Listar por atividade");
+            Console.WriteLine("[2] Listar atividades");
             Console.WriteLine("[3] Buscar por ID");
             Console.WriteLine("[4] Editar atividade");
             Console.WriteLine("[5] Excluir atividade");
@@ -94,7 +107,7 @@ namespace WeeklyReportManager
             return -1;
 
         }
-        //pause the program
+        //Pause the program
         static void Pause()
         {
             Console.WriteLine();
@@ -102,6 +115,31 @@ namespace WeeklyReportManager
             Console.Write("Pressione qualquer tecla para continuar...");
             Console.ResetColor();
             Console.ReadKey();
+        }
+
+        //Mostrar a listagem da atrividade
+        static void ShowReports()
+        {
+            var reports = service.GetAllReports();
+            if(reports.Count == 0)
+            {
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine("Não há nenhum item na lista!");
+            }
+            else
+            {
+                foreach(var report in reports)
+                {
+                    Console.WriteLine("============================================");
+                    Console.WriteLine($"ID: {report.Id}");
+                    Console.WriteLine($"Data: {report.Date}");
+                    Console.WriteLine($"Tarefa: {report.TaskName}");
+                    Console.WriteLine($"Quantidade: {report.Quantity}");
+                    Console.WriteLine($"Observação: {report.Observation}");
+                    Console.WriteLine("============================================");
+                }
+            }
+            Pause();
         }
     }
 }
