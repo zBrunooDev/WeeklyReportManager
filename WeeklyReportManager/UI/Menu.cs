@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
@@ -134,18 +135,12 @@ namespace WeeklyReportManager
             {
                 foreach(var report in reports)
                 {
-                    Console.WriteLine("============================================");
-                    Console.WriteLine($"ID: {report.Id}");
-                    Console.WriteLine($"Data: {report.Date}");
-                    Console.WriteLine($"Tarefa: {report.TaskName}");
-                    Console.WriteLine($"Quantidade: {report.Quantity}");
-                    Console.WriteLine($"Observação: {report.Observation}");
-                    Console.WriteLine("============================================");
+                    DisplayReport(report);
                 }
             }
             Pause();
         }
-
+        // Show report by ID
         static void ShowReportById()
         {
             Console.Write("Digite o ID: ");
@@ -168,16 +163,21 @@ namespace WeeklyReportManager
                 }
                 else
                 {
-                    Console.WriteLine("============================================");
-                    Console.WriteLine($"ID: {serviceId.Id}");
-                    Console.WriteLine($"Data: {serviceId.Date}");
-                    Console.WriteLine($"Tarefa: {serviceId.TaskName}");
-                    Console.WriteLine($"Quantidade: {serviceId.Quantity}");
-                    Console.WriteLine($"Observação: {serviceId.Observation}");
-                    Console.WriteLine("============================================");
+                    DisplayReport(serviceId);
                     Pause();
                 }
             }
+        }
+        // Show Display of Reports Listing
+        static void DisplayReport(ActivityReport report)
+        {
+            Console.WriteLine("============================================");
+            Console.WriteLine($"ID: {report.Id}");
+            Console.WriteLine($"Data: {report.Date}");
+            Console.WriteLine($"Tarefa: {report.TaskName}");
+            Console.WriteLine($"Quantidade: {report.Quantity}");
+            Console.WriteLine($"Observação: {report.Observation}");
+            Console.WriteLine("============================================");
         }
     }
 }
