@@ -55,6 +55,10 @@ namespace WeeklyReportManager
                             // Listing activities
                             ShowReports();
                             continue;
+                        case 3:
+                            //List by ID
+                            ShowReportById();
+                            break;
                         case 0:
                             runnig = false;
                             break;
@@ -140,6 +144,40 @@ namespace WeeklyReportManager
                 }
             }
             Pause();
+        }
+
+        static void ShowReportById()
+        {
+            Console.Write("Digite o ID: ");
+            int chooseId = ReadOption();
+            if (chooseId == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Opção inválida.");
+                Console.ResetColor();
+                Pause();
+            }
+            else
+            {
+                var serviceId = service.FindById(chooseId);
+                if(serviceId == null)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Id não encontrado!");
+                    Pause();
+                }
+                else
+                {
+                    Console.WriteLine("============================================");
+                    Console.WriteLine($"ID: {serviceId.Id}");
+                    Console.WriteLine($"Data: {serviceId.Date}");
+                    Console.WriteLine($"Tarefa: {serviceId.TaskName}");
+                    Console.WriteLine($"Quantidade: {serviceId.Quantity}");
+                    Console.WriteLine($"Observação: {serviceId.Observation}");
+                    Console.WriteLine("============================================");
+                    Pause();
+                }
+            }
         }
     }
 }
