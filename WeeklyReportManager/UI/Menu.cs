@@ -133,9 +133,22 @@ namespace WeeklyReportManager
             }
             else
             {
-                foreach(var report in reports)
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("============================================");
+                Console.WriteLine("             DETALHES DO RELATÓRIO           ");
+                Console.WriteLine("============================================");
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+
+                Console.WriteLine($"Total de atividades: {reports.Count}");
+                Console.WriteLine();
+
+                Console.ResetColor();
+
+                foreach (var report in reports)
                 {
                     DisplayReport(report);
+                    Console.WriteLine();
                 }
             }
             Pause();
@@ -157,12 +170,20 @@ namespace WeeklyReportManager
                 var serviceId = service.FindById(chooseId);
                 if(serviceId == null)
                 {
+                    Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Id não encontrado!");
+                    Console.WriteLine("ID não encontrado!");
+                    Console.ResetColor();
                     Pause();
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine("============================================");
+                    Console.WriteLine("            BUSCAR RELATÓRIO POR ID         ");
+                    Console.WriteLine("============================================");
+                    Console.ResetColor();
+                    Console.WriteLine();
                     DisplayReport(serviceId);
                     Pause();
                 }
@@ -171,13 +192,19 @@ namespace WeeklyReportManager
         // Show Display of Reports Listing
         static void DisplayReport(ActivityReport report)
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("============================================");
-            Console.WriteLine($"ID: {report.Id}");
-            Console.WriteLine($"Data: {report.Date}");
-            Console.WriteLine($"Tarefa: {report.TaskName}");
-            Console.WriteLine($"Quantidade: {report.Quantity}");
-            Console.WriteLine($"Observação: {report.Observation}");
+            Console.ResetColor();
+
+            Console.WriteLine($"ID         : {report.Id}");
+            Console.WriteLine($"Data       : {report.Date:dd/MM/yyyy HH:mm}");
+            Console.WriteLine($"Tarefa     : {report.TaskName}");
+            Console.WriteLine($"Quantidade : {report.Quantity}");
+            Console.WriteLine($"Observação : {report.Observation}");
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("============================================");
+            Console.ResetColor();
         }
     }
 }
