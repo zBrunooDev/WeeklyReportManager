@@ -55,6 +55,19 @@ namespace WeeklyReportManager
             }
             return null;
         }
+        //Update Report
+        public bool UpdateReport(int id, string name, int quantity, string observation)
+        {
+            ActivityReport report = FindById(id);
+            if(report == null)
+                return false;
+
+                report.TaskName = name;
+                report.Quantity = quantity;
+                report.Observation = observation;
+                return true;
+            
+        }
         //Delet records
         public void DeleteActivityReport(int id)
         {

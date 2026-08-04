@@ -60,6 +60,8 @@ namespace WeeklyReportManager
                             //List by ID
                             ShowReportById();
                             break;
+                        case 4:
+
                         case 0:
                             runnig = false;
                             break;
