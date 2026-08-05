@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
@@ -61,7 +62,8 @@ namespace WeeklyReportManager
                             ShowReportById();
                             break;
                         case 4:
-
+                            ShowEditReport();
+                            break;  
                         case 0:
                             runnig = false;
                             break;
@@ -208,5 +210,50 @@ namespace WeeklyReportManager
             Console.WriteLine("============================================");
             Console.ResetColor();
         }
+        // Show current data and edit
+        static void ShowEditReport()
+        {
+            Console.Write("Digite o ID: ");
+            int id = ReadOption();
+            if(id == -1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Opção inválida.");
+                Console.ResetColor();
+                Pause();
+            }
+            else
+            {
+                ActivityReport report = service.FindById(id);
+                if(report == null)
+                {
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("ID não encontrado!");
+                    Console.ResetColor();
+                    Pause();
+                }
+                else
+                {
+                    Console.WriteLine();
+                    DisplayReport(report);
+
+                    Console.Write("Novo nome: ");
+                    string name = Console.ReadLine();
+                    Console.Write("Nova quantidade: ");
+                    int quantity = int.Parse(Console.ReadLine());
+                    Console.Write("Nova observação: ");
+                    string observation = Console.ReadLine();
+
+                    service.UpdateReport(id, name, quantity, observation);
+
+                    Console.ForegroundColor= ConsoleColor.Green;
+                    Console.Write("Dados alterado com suceso!");
+
+                    Pause();
+                }
+            }
+        }
+
     }
 }
