@@ -28,11 +28,7 @@ namespace WeeklyReportManager
                 int option = ReadOption();
                 if (option == -1)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Opção inválida.");
-                    Console.ResetColor();
-                    Pause();
-                    continue;
+                    ShowError("Opção inválida.");
                 }
                 else
                 {
@@ -164,21 +160,14 @@ namespace WeeklyReportManager
             int chooseId = ReadOption();
             if (chooseId == -1)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Opção inválida.");
-                Console.ResetColor();
-                Pause();
+                ShowError("Opção inválida.");
             }
             else
             {
                 var serviceId = service.FindById(chooseId);
                 if(serviceId == null)
                 {
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("ID não encontrado!");
-                    Console.ResetColor();
-                    Pause();
+                    ShowError("ID não encontrado!");
                 }
                 else
                 {
@@ -211,33 +200,27 @@ namespace WeeklyReportManager
             Console.ResetColor();
         }
         // Show current data and edit
+        // refactor later
         static void ShowEditReport()
         {
             Console.Write("Digite o ID: ");
             int id = ReadOption();
             if(id == -1)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Opção inválida.");
-                Console.ResetColor();
-                Pause();
+                ShowError("Opção inválida.");
             }
             else
             {
                 ActivityReport report = service.FindById(id);
                 if(report == null)
                 {
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("ID não encontrado!");
-                    Console.ResetColor();
-                    Pause();
+                    ShowError("ID não encontrado!");
                 }
                 else
                 {
                     Console.WriteLine();
                     DisplayReport(report);
-
+                    Console.WriteLine();
                     Console.Write("Novo nome: ");
                     string name = Console.ReadLine();
                     Console.Write("Nova quantidade: ");
@@ -247,13 +230,24 @@ namespace WeeklyReportManager
 
                     service.UpdateReport(id, name, quantity, observation);
 
-                    Console.ForegroundColor= ConsoleColor.Green;
-                    Console.Write("Dados alterado com suceso!");
-
-                    Pause();
+                    Console.WriteLine();
+                    ShowSuccess("Dados alterado com suceso!");
                 }
             }
         }
-
+        static void ShowError(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Pause();
+        }
+        static void ShowSuccess(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+            Console.ResetColor();
+            Pause();
+        }
     }
 }
