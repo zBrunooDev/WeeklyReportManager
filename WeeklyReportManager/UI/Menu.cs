@@ -39,8 +39,7 @@ namespace WeeklyReportManager
                             //Adding activities
                             Console.Write("Digite o nome da atividade: ");
                             string name = Console.ReadLine();
-                            Console.Write("Quantidade: ");
-                            int quantity = int.Parse(Console.ReadLine());
+                            int quantity = ReadInt("Quantidade: ");
                             Console.Write("Observação: ");
                             string observation = Console.ReadLine();
                             service.RegisterActivity(name, quantity, observation);
@@ -58,6 +57,7 @@ namespace WeeklyReportManager
                             ShowReportById();
                             break;
                         case 4:
+                            //Edit report
                             ShowEditReport();
                             break;  
                         case 0:
@@ -200,41 +200,36 @@ namespace WeeklyReportManager
             Console.ResetColor();
         }
         // Show current data and edit
-        // refactor later
         static void ShowEditReport()
         {
-            Console.Write("Digite o ID: ");
-            int id = ReadOption();
-            if(id == -1)
+            ActivityReport report = SelectReportById();
+            if (report == null)
             {
-                ShowError("Opção inválida.");
+                Pause();
+                return;
             }
-            else
-            {
-                ActivityReport report = service.FindById(id);
-                if(report == null)
-                {
-                    ShowError("ID não encontrado!");
-                }
-                else
-                {
-                    Console.WriteLine();
-                    DisplayReport(report);
-                    Console.WriteLine();
-                    Console.Write("Novo nome: ");
-                    string name = Console.ReadLine();
-                    Console.Write("Nova quantidade: ");
-                    int quantity = int.Parse(Console.ReadLine());
-                    Console.Write("Nova observação: ");
-                    string observation = Console.ReadLine();
 
-                    service.UpdateReport(id, name, quantity, observation);
+            Console.WriteLine();
 
-                    Console.WriteLine();
-                    ShowSuccess("Dados alterado com suceso!");
-                }
-            }
+            DisplayReport(report);
+
+            Console.WriteLine();
+
+            Console.Write("Novo nome: ");
+            string name = Console.ReadLine();
+
+            int quantity = ReadInt("Nova quantidade: ");
+
+            Console.Write("Nova observação: ");
+            string observation = Console.ReadLine();
+
+            service.UpdateReport(report, name, quantity, observation);
+
+            Console.WriteLine();
+            ShowSuccess("Dados alterado com suceso!");
+            
         }
+        // Auxiliary methods for displaying success/error messages
         static void ShowError(string message)
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -249,5 +244,39 @@ namespace WeeklyReportManager
             Console.ResetColor();
             Pause();
         }
+        // auxiliary method to return an item from the list
+        static ActivityReport SelectReportById()
+        {
+            Console.Write("Digite o ID: ");
+            int id = ReadOption();
+            if (id == -1)
+            {
+                ShowError("Opção inválida.");
+                return null;
+            }
+
+            ActivityReport report = service.FindById(id);
+            if (report == null)
+            {
+                ShowError("ID não encontrado!");
+                return null;
+            }
+            return report;
+        }
+        // auxiliary method for reading numbers
+        static int ReadInt(string prompt)
+        {
+            int quantity;
+            Console.Write($"{prompt}");
+
+            while (!int.TryParse(Console.ReadLine(), out quantity))
+            {
+                ShowError("Valor inválida! Digite um número inteiro.");
+                Console.WriteLine();
+                Console.Write($"{prompt}");
+            }
+            return quantity;
+        }
+
     }
 }
