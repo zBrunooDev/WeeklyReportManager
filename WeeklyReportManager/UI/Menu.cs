@@ -59,7 +59,10 @@ namespace WeeklyReportManager
                         case 4:
                             //Edit report
                             ShowEditReport();
-                            break;  
+                            break;
+                        case 5:
+                            ShowDeletReport();
+                            break;
                         case 0:
                             runnig = false;
                             break;
@@ -262,6 +265,19 @@ namespace WeeklyReportManager
                 return null;
             }
             return report;
+        }
+        // auxiliary method for deleting a report
+        static void ShowDeletReport()
+        {
+            ActivityReport report = SelectReportById();
+            if (report == null)
+                return;
+
+            DisplayReport(report);
+
+            service.DeleteReport(report.Id);
+
+            ShowSuccess("Atividade excluída com sucesso!");
         }
         // auxiliary method for reading numbers
         static int ReadInt(string prompt)

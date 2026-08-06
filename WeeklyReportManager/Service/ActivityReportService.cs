@@ -63,7 +63,7 @@ namespace WeeklyReportManager
                 report.Observation = observation;  
         }
         //Delet records
-        public void DeleteActivityReport(int id)
+        public void DeleteReport(int id)
         {
 
             ActivityReport report = FindById(id);
