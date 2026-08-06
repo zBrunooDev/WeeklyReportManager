@@ -47,11 +47,11 @@ namespace WeeklyReportManager
                             Console.WriteLine("Atividade Cadastrada com sucesso!");
                             Console.ResetColor();
                             Pause();
-                            continue;
+                            break;
                         case 2:
                             // Listing activities
                             ShowReports();
-                            continue;
+                            break;
                         case 3:
                             //List by ID
                             ShowReportById();
@@ -64,13 +64,12 @@ namespace WeeklyReportManager
                             ShowDeletReport();
                             break;
                         case 0:
+                            ShowSuccess("Encerrando o sistema...");
                             runnig = false;
                             break;
                     }
-
                 }
             }
-
         }
         // Draw the header
         static void DrawHeader()
@@ -229,7 +228,7 @@ namespace WeeklyReportManager
             service.UpdateReport(report, name, quantity, observation);
 
             Console.WriteLine();
-            ShowSuccess("Dados alterado com suceso!");
+            ShowSuccess("Dados alterados com sucesso!");
             
         }
         // Auxiliary methods for displaying success/error messages
@@ -274,8 +273,19 @@ namespace WeeklyReportManager
                 return;
 
             DisplayReport(report);
+            Console.WriteLine("[0] = Não / [1] = Sim");
+            int option = ReadInt("Deseja realmente excluir esta atividade?: ");
+            
+            if (option == 0)
+            {
+                return;
+            }
+            else
+            {
+                service.DeleteReport(report.Id);
+                ShowError("Atividade não excluida!");
+            }
 
-            service.DeleteReport(report.Id);
 
             ShowSuccess("Atividade excluída com sucesso!");
         }
@@ -287,7 +297,7 @@ namespace WeeklyReportManager
 
             while (!int.TryParse(Console.ReadLine(), out quantity))
             {
-                ShowError("Valor inválida! Digite um número inteiro.");
+                ShowError("Valor inválido! Digite um número inteiro.");
                 Console.WriteLine();
                 Console.Write($"{prompt}");
             }
