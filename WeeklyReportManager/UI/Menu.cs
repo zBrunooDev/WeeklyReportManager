@@ -17,9 +17,9 @@ namespace WeeklyReportManager
         // initializes and controls the application flow
         public void Start()
         {
-            bool runnig = true;
+            bool running = true;
 
-            while (runnig)
+            while (running)
             {
 
                 DrawHeader();
@@ -37,16 +37,7 @@ namespace WeeklyReportManager
                     {
                         case 1:
                             //Adding activities
-                            Console.Write("Digite o nome da atividade: ");
-                            string name = Console.ReadLine();
-                            int quantity = ReadInt("Quantidade: ");
-                            Console.Write("Observação: ");
-                            string observation = Console.ReadLine();
-                            service.RegisterActivity(name, quantity, observation);
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Atividade Cadastrada com sucesso!");
-                            Console.ResetColor();
-                            Pause();
+                            ShowAdding();
                             break;
                         case 2:
                             // Listing activities
@@ -61,11 +52,11 @@ namespace WeeklyReportManager
                             ShowEditReport();
                             break;
                         case 5:
-                            ShowDeletReport();
+                            ShowDeleteReport();
                             break;
                         case 0:
                             ShowSuccess("Encerrando o sistema...");
-                            runnig = false;
+                            running = false;
                             break;
                     }
                 }
@@ -122,6 +113,20 @@ namespace WeeklyReportManager
             Console.Write("Pressione qualquer tecla para continuar...");
             Console.ResetColor();
             Console.ReadKey();
+        }
+        //Adding activities
+        static void ShowAdding()
+        {
+            Console.Write("Digite o nome da atividade: ");
+            string name = Console.ReadLine();
+            int quantity = ReadInt("Quantidade: ");
+            Console.Write("Observação: ");
+            string observation = Console.ReadLine();
+            service.RegisterActivity(name, quantity, observation);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Atividade Cadastrada com sucesso!");
+            Console.ResetColor();
+            Pause();
         }
 
         //Show the attractive listing
@@ -207,7 +212,6 @@ namespace WeeklyReportManager
             ActivityReport report = SelectReportById();
             if (report == null)
             {
-                Pause();
                 return;
             }
 
@@ -266,7 +270,7 @@ namespace WeeklyReportManager
             return report;
         }
         // auxiliary method for deleting a report
-        static void ShowDeletReport()
+        static void ShowDeleteReport()
         {
             ActivityReport report = SelectReportById();
             if (report == null)
@@ -278,15 +282,10 @@ namespace WeeklyReportManager
             
             if (option == 0)
             {
+                ShowError("Atividade não excluida!");
                 return;
             }
-            else
-            {
-                service.DeleteReport(report.Id);
-                ShowError("Atividade não excluida!");
-            }
-
-
+            service.DeleteReport(report.Id);
             ShowSuccess("Atividade excluída com sucesso!");
         }
         // auxiliary method for reading numbers

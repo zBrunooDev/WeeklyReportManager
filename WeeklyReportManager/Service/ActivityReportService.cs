@@ -8,11 +8,11 @@ namespace WeeklyReportManager
 {
     internal class ActivityReportService
     {
-        public List<ActivityReport> reports = new List<ActivityReport>();
-        public int contId = 0;
+        private List<ActivityReport> reports = new List<ActivityReport>();
+        private int contId = 0;
 
         // Creating an activity log object
-        public ActivityReport CreateReport(string name, int quantity, string observation)
+        private ActivityReport CreateReport(string name, int quantity, string observation)
         {
             contId++;
 
@@ -65,13 +65,7 @@ namespace WeeklyReportManager
         //Delet records
         public void DeleteReport(int id)
         {
-
-            ActivityReport report = FindById(id);
-            if (report != null)
-            {
-                reports.Remove(FindById(id));
-            }
-
+            reports.Remove(FindById(id));
         }
     }
 }
