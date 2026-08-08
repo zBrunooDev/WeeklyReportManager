@@ -76,3 +76,14 @@ Durante o desenvolvimento desta versão pratiquei:
 * Evolução incremental de um projeto real
 
 Este projeto continua em desenvolvimento e será utilizado como base para futuras versões e novos estudos dentro do ecossistema .NET.
+
+## Demonstração
+
+### Menu principal
+
+![Menu principal](assets/menu.png)
+
+### Listagem de atividades
+
+![Listagem de atividades](assets/reports.png)
+
