@@ -85,5 +85,5 @@ Este projeto continua em desenvolvimento e será utilizado como base para futura
 
 ### Listagem de atividades
 
-![Listagem de atividades](assets/reports.png)
+![Listagem de atividades](WeeklyReportManager/assets/reports.png)
 
