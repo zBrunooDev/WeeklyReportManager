@@ -81,9 +81,9 @@ Este projeto continua em desenvolvimento e será utilizado como base para futura
 
 ### Menu principal
 
-![Menu principal](assets/menu.png)
+![Menu principal](WeeklyReportManager/assest/menu.png)
 
 ### Listagem de atividades
 
-![Listagem de atividades](WeeklyReportManager/assets/reports.png)
+![Listagem de atividades](WeeklyReportManager/assest/reports.png)
 
