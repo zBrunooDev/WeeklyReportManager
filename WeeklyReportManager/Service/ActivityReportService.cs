@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using WeeklyReportManager.Service;
 
 namespace WeeklyReportManager
 {
     internal class ActivityReportService
     {
+        JsonStorageService jsonStorageService;
         private List<ActivityReport> reports = new List<ActivityReport>();
         private int contId = 0;
 
