@@ -10,12 +10,18 @@ namespace WeeklyReportManager
     internal class ActivityReportService
     {
         private List<ActivityReport> reports = new List<ActivityReport>();
-        private int contId = 0;
+        private int contId;
         private readonly JsonStorageService storage;
 
         public ActivityReportService()
         {
             storage = new JsonStorageService();
+            reports = storage.Load();
+            foreach (var report in reports)
+            {
+                if (report.Id > contId)
+                    contId = report.Id;
+            }
         }
 
         // Creating an activity log object
