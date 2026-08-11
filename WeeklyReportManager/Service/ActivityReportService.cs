@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using WeeklyReportManager.Service;
 
 namespace WeeklyReportManager
 {
     internal class ActivityReportService
     {
-        JsonStorageService jsonStorageService;
         private List<ActivityReport> reports = new List<ActivityReport>();
         private int contId = 0;
+        private readonly JsonStorageService storage;
+
+        public ActivityReportService()
+        {
+            storage = new JsonStorageService();
+        }
 
         // Creating an activity log object
         private ActivityReport CreateReport(string name, int quantity, string observation)

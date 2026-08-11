@@ -12,6 +12,7 @@ namespace WeeklyReportManager.Service
     {
         private readonly string path = "Data/reports.json";
 
+        // Method that serializes the object
         public void Save(List<ActivityReport> reports)
         {
             string json = JsonSerializer.Serialize(reports, new JsonSerializerOptions
@@ -20,6 +21,7 @@ namespace WeeklyReportManager.Service
             });
             File.WriteAllText(path, json);
         }
+        //Method that deserializes the object
         public List<ActivityReport> Load()
         {  
             if (!File.Exists(path))

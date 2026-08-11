@@ -157,7 +157,6 @@ namespace WeeklyReportManager
                     DisplayReport(report);
                     Console.WriteLine();
                 }
-
             }
             Pause();
         }
