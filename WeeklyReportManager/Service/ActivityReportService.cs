@@ -49,6 +49,7 @@ namespace WeeklyReportManager
         public void AddActivityReport(ActivityReport report)
         {
             reports.Add(report);
+            storage.Save(reports);
         }
 
         //list report
@@ -74,11 +75,13 @@ namespace WeeklyReportManager
                 report.TaskName = name;
                 report.Quantity = quantity;
                 report.Observation = observation;  
+                storage.Save(reports);
         }
         //Delet records
         public void DeleteReport(int id)
         {
             reports.Remove(FindById(id));
+            storage.Save(reports);
         }
     }
 }
