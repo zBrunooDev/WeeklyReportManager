@@ -10,7 +10,7 @@ namespace WeeklyReportManager.Service
 {
     internal class JsonStorageService
     {
-        private readonly string path = "Data/reports.json";
+        private readonly string path = "Data/report.json";
 
         // Method that serializes the object
         public void Save(List<ActivityReport> reports)
@@ -19,6 +19,13 @@ namespace WeeklyReportManager.Service
             {
                 WriteIndented = true
             });
+            string directory = Path.GetDirectoryName(path);
+
+            if (!string.IsNullOrEmpty(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
             File.WriteAllText(path, json);
         }
         //Method that deserializes the object
